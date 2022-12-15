@@ -1,7 +1,12 @@
 import { Schema } from "mongoose";
 
 export default new Schema({
-  members: {
+  title: {
+    type: Schema.Types.String,
+    required: [true, "Please provide a title for the standard."],
+    trim: true,
+  },
+  files: {
     type: [Schema.Types.ObjectId],
     ref: "File",
   },
