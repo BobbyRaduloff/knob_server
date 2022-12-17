@@ -51,7 +51,7 @@ import get_methodology_committee from "#api/get-methodology-committee";
 import get_os_protocols from "#api/get-os-protocols";
 import get_publication_content from "#api/get-publication-content";
 import get_publication_content_item from "#api/get-publication-content-item";
-import get_qulifications from "#api/get-qulifications";
+import get_qualifications from "#api/get-qualifications";
 import get_regional_committee from "#api/get-regional-committee";
 import get_rev_registry from "#api/get-rev-registry";
 import get_seminars from "#api/get-seminars";
@@ -151,16 +151,16 @@ const get = [
   { url: "/api/get-os-protocols", f: get_os_protocols },
   { url: "/api/get-publication-content", f: get_publication_content },
   { url: "/api/get-publication-content-item", f: get_publication_content_item },
-  { url: "/api/get-qulifications", f: get_qulifications },
+  { url: "/api/get-qualifications", f: get_qualifications },
   { url: "/api/get-regional-committee", f: get_regional_committee },
   { url: "/api/get-rev-registry", f: get_rev_registry },
   { url: "/api/get-seminars", f: get_seminars },
   { url: "/api/get-us-committee", f: get_us_committee },
   { url: "/api/get-us-protocols", f: get_us_protocols },
   { url: "/api/get-users", f: get_users },
-  { url: "/api/is-user-logged-in", f: is_user_logged_in },
-  { url: "/api/is-user-curator", f: is_user_curator },
-  { url: "/api/is-user-admin", f: is_user_admin },
+  { url: "/api/is-user-logged-in", f: is_user_logged_in }, // DONE
+  { url: "/api/is-user-curator", f: is_user_curator }, // DONE
+  { url: "/api/is-user-admin", f: is_user_admin }, // DONE
 ];
 get.forEach((x) => app.get(x.url, multer().none(), x.f));
 

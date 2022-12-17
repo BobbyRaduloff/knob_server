@@ -11,7 +11,7 @@ export default async function (req, res) {
   }
 
   try {
-    db_connect();
+    await db_connect();
 
     const { id } = req.body;
     if (!id) {

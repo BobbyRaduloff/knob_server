@@ -15,6 +15,7 @@ export async function db_connect() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       dbName: "knob",
+      ignoreUndefined: true,
     };
 
     cached.promise = mongoose.connect(process.env.MONGO_URI, opts).then((mongoose) => mongoose);

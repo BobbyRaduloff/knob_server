@@ -149,7 +149,7 @@ IsUserAdmin:
 
 ## API Endpoint
 NB: Send multi-part-form not json, receive JSON
-* `/api/create-admin-account`: IS_DEV POST JSON(User) -> Session Token 
+* `/api/create-admin-account`: IS_DEV POST JSON(User) -> Session Token
 * `/api/create-curator-account`: IS_DEV POST JSON(User) -> Session Token
 * `/api/login`: POST(email, password) -> Session Token
 * `/api/logout`: GET() -> Delete Session Token 
@@ -157,7 +157,7 @@ NB: Send multi-part-form not json, receive JSON
 * `/api/is-user-curator`: GET() -> result
 * `/api/is-user-admin`: GET() -> result
 * `/api/get-users`: (full_name opt, capacity enum opt, number opt, city opt) -> [User]
-* `/api/get-companies`: () -> [Company]
+* `/api/get-companies`: (name opt, capacity enum opt, number opt, city opt) -> [Company]
 * `/api/get-invalid-certificates`: (OwnerType) -> [Certificate, is_valid == false]
 * `/api/get-rev-registry`: (name opt, city opt, certificate_number opt) -> [REV]
 * `/api/get-knob-content`: () -> [KNOBContent]
@@ -168,10 +168,10 @@ NB: Send multi-part-form not json, receive JSON
 * `/api/get-publication-content-item`: (_id) -> PublicationContent
 * `/api/get-international-content`: () -> [InternationalContent]
 * `/api/get-international-content-item`: (_id) -> InternationalContent
-* `/api/get-us-committee`: () -> USCommittee
-* `/api/get-ks-committee`: () -> KSCommittee
-* `/api/get-ethics-committee`: () -> EthicsCommittee
-* `/api/get-methodology-committee`: () -> MethodologyCommittee
+* `/api/get-us-committee`: () -> [USCommitteeMember]
+* `/api/get-ks-committee`: () -> [KSCommitteeMember]
+* `/api/get-ethics-committee`: () -> [EthicsCommitteeMember]
+* `/api/get-methodology-committee`: () -> [MethodologyCommitteeMember]
 * `/api/get-bulgarian-standards`: () -> [BulgarianStandard]
 * `/api/get-european-standards`: () -> [EuropeanStandard]
 * `/api/get-seminars`: () -> [SeminarItem]

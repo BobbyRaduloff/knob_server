@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema } from "mongoose";
 
-const CommitteeMemberSchema = new Schema({
+export default new Schema({
   full_name: {
     type: Schema.Types.String,
     required: [true, "Моля предоставете трите имена на член на комитета."],
@@ -19,5 +19,3 @@ const CommitteeMemberSchema = new Schema({
     required: [true, "Моля предоставете информация за дали член на комитета е представител."],
   },
 });
-
-module.exports = mongoose.models.CommitteeMember || mongoose.model("CommitteeMember", CommitteeMemberSchema);

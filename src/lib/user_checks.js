@@ -2,7 +2,7 @@ import { validate_token } from "#lib/token";
 import { db_connect } from "#lib/db";
 import User from "#models/User";
 
-export function is_logged_in(req, res) {
+export async function is_logged_in(req, res) {
   const auth_header = req.headers.authorization;
   const token = auth_header && auth_header.split(" ")[1];
 
@@ -12,7 +12,15 @@ export function is_logged_in(req, res) {
   }
 
   try {
-    return validate_token(token);
+    const email = validate_token(token);
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      res.status(401).json({ error: "Забранен достъп!" });
+      throw new Error("Invalid token!");
+    }
+
+    return email;
   } catch {
     res.status(401).json({ error: "Забранен достъп!" });
     throw new Error("Invalid token!");
