@@ -5,19 +5,19 @@ import { BulgarianCitiesCyrillic } from "#constants/cities";
 const CompanySchema = new Schema({
   number: {
     type: Schema.Types.Number,
-    required: [true, "Please provide a number."],
+    required: [true, "Моля предоставете номер на фирмата."],
     unique: true,
     min: 1,
   },
   name: {
     type: Schema.Types.String,
-    required: [true, "Please provide a name."],
+    required: [true, "Моля предоставете име на фирмата."],
     trim: true,
   },
   city: {
     type: Schema.Types.String,
     trim: true,
-    required: [true, "Please provide a city."],
+    required: [true, "Моля предоставете град на фирмата."],
     enum: BulgarianCitiesCyrillic,
   },
   capacity: {
@@ -27,7 +27,7 @@ const CompanySchema = new Schema({
         enum: CertificateType,
       }),
     ],
-    required: [true, "Please provide one or more capacities."],
+    required: [true, "Моля предоставете оценителски капацитет на фирмата."],
   },
   invalid_certificates: {
     type: [Schema.Types.ObjectId],

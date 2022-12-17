@@ -1,1 +1,1 @@
-export default function (req, res) {}
+export default async function (req, res) {}

@@ -29,7 +29,7 @@ import delete_publication_content from "#api/delete-publication-content";
 import delete_qualification_item from "#api/delete-qualification-item";
 import delete_regional_committee_member from "#api/delete-regional-committee-member";
 import delete_rev from "#api/delete-rev";
-import delete_seminal_item from "#api/delete-seminal-item";
+import delete_seminar_item from "#api/delete-seminar-item";
 import delete_us_committee_member from "#api/delete-us-committee-member";
 import delete_us_protocol from "#api/delete-us-protocol";
 import get_bulgarian_standards from "#api/get-bulgarian-standards";
@@ -62,7 +62,6 @@ import is_user_admin from "#api/is-user-admin";
 import is_user_curator from "#api/is-user-curator";
 import is_user_logged_in from "#api/is-user-logged-in";
 import login from "#api/login";
-import logout from "#api/logout";
 import post_bulgarian_standard from "#api/post-bulgarian-standard";
 import post_company from "#api/post-company";
 import post_course_item from "#api/post-course-item";
@@ -110,30 +109,29 @@ import put_user from "#api/put-user";
 const app = express();
 
 const del = [
-  { url: "/api/delete-bulgarian-standard", f: delete_bulgarian_standard },
-  { url: "/api/delete-course-item", f: delete_course_item },
-  { url: "/api/delete-ethics-committee-member", f: delete_ethics_committee_member },
-  { url: "/api/delete-ethics-protocol", f: delete_ethics_protocol },
-  { url: "/api/delete-european-standard", f: delete_european_standard },
-  { url: "/api/delete-international-content", f: delete_international_content },
-  { url: "/api/delete-knob-content", f: delete_knob_content },
-  { url: "/api/delete-ks-committee-member", f: delete_ks_committee_member },
-  { url: "/api/delete-ks-protocol", f: delete_ks_protocol },
-  { url: "/api/delete-literature-content", f: delete_literature_content },
-  { url: "/api/delete-methodology-committee-member", f: delete_methodology_committee_member },
-  { url: "/api/delete-os-protocol", f: delete_os_protocol },
-  { url: "/api/delete-publication-content", f: delete_publication_content },
-  { url: "/api/delete-qualification-item", f: delete_qualification_item },
-  { url: "/api/delete-regional-committee-member", f: delete_regional_committee_member },
-  { url: "/api/delete-rev", f: delete_rev },
-  { url: "/api/delete-seminal-item", f: delete_seminal_item },
-  { url: "/api/delete-us-committee-member", f: delete_us_committee_member },
-  { url: "/api/delete-us-protocol", f: delete_us_protocol },
+  { url: "/api/delete-bulgarian-standard", f: delete_bulgarian_standard }, // DONE
+  { url: "/api/delete-course-item", f: delete_course_item }, // DONE
+  { url: "/api/delete-ethics-committee-member", f: delete_ethics_committee_member }, // DONE
+  { url: "/api/delete-ethics-protocol", f: delete_ethics_protocol }, // DONE
+  { url: "/api/delete-european-standard", f: delete_european_standard }, // DONE
+  { url: "/api/delete-international-content", f: delete_international_content }, // DONE
+  { url: "/api/delete-knob-content", f: delete_knob_content }, // DONE
+  { url: "/api/delete-ks-committee-member", f: delete_ks_committee_member }, // DONE
+  { url: "/api/delete-ks-protocol", f: delete_ks_protocol }, // DONE
+  { url: "/api/delete-literature-content", f: delete_literature_content }, // DONE
+  { url: "/api/delete-methodology-committee-member", f: delete_methodology_committee_member }, // DONE
+  { url: "/api/delete-os-protocol", f: delete_os_protocol }, // DONE
+  { url: "/api/delete-publication-content", f: delete_publication_content }, // DONE
+  { url: "/api/delete-qualification-item", f: delete_qualification_item }, // DONE
+  { url: "/api/delete-regional-committee-member", f: delete_regional_committee_member }, // DONE
+  { url: "/api/delete-rev", f: delete_rev }, // DONE
+  { url: "/api/delete-seminar-item", f: delete_seminar_item }, // DONE
+  { url: "/api/delete-us-committee-member", f: delete_us_committee_member }, // DONE
+  { url: "/api/delete-us-protocol", f: delete_us_protocol }, // DONE
 ];
 del.forEach((x) => app.delete(x.url, multer().none(), x.f));
 
 const get = [
-  { url: "/api/logout", f: logout },
   { url: "/api/get-bulgarian-standards", f: get_bulgarian_standards },
   { url: "/api/get-companies", f: get_companies },
   { url: "/api/get-courses", f: get_courses },
@@ -167,9 +165,9 @@ const get = [
 get.forEach((x) => app.get(x.url, multer().none(), x.f));
 
 const post = [
-  { url: "/api/create-admin-account", f: create_admin_account },
-  { url: "/api/create-curator-account", f: create_curator_account },
-  { url: "/api/login", f: login },
+  { url: "/api/create-admin-account", f: create_admin_account }, // DONE
+  { url: "/api/create-curator-account", f: create_curator_account }, // DONE
+  { url: "/api/login", f: login }, // DONE
   { url: "/api/post-bulgarian-standard", f: post_bulgarian_standard },
   { url: "/api/post-company", f: post_company },
   { url: "/api/post-course-item", f: post_course_item },

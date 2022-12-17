@@ -3,20 +3,20 @@ import mongoose, { Schema } from "mongoose";
 const CommitteeMemberSchema = new Schema({
   full_name: {
     type: Schema.Types.String,
-    required: [true, "Please provide a full name for this member."],
+    required: [true, "Моля предоставете трите имена на член на комитета."],
     trim: true,
   },
   email: {
     type: Schema.Types.String,
-    required: [true, "Please provide an email for this member."],
+    required: [true, "Моля предоставете имейл на член на комитета."],
     trim: true,
     lowercase: true,
     unique: true,
-    match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Please insert a valid email!"],
+    match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Моля предоставете валиден имейл."],
   },
   is_representative: {
     type: Schema.Types.Boolean,
-    required: [true, "Please provide a value for is_representative."],
+    required: [true, "Моля предоставете информация за дали член на комитета е представител."],
   },
 });
 

@@ -3,7 +3,7 @@ import { Schema } from "mongoose";
 export default new Schema({
   title: {
     type: Schema.Types.String,
-    required: [true, "Please provide a title for the item."],
+    required: [true, "Моля предоставете заглавие на съдържанието."],
     trim: true,
   },
   timestamp: {

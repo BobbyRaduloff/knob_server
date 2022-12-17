@@ -6,28 +6,39 @@ import { UserTypes } from "#constants/users";
 const UserSchema = new Schema({
   number: {
     type: Schema.Types.Number,
-    required: [true, "Please provide a number."],
+    required: [true, "Моля предоставете номер на сертификата."],
     unique: true,
     min: 1,
   },
+  email: {
+    type: Schema.Types.String,
+    required: [true, "Моля предоставете имейл на потребителя."],
+    trim: true,
+    unique: [true, "Този имейл вече е зает."],
+    match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Моля предоставете валиден имейл."],
+  },
+  password_hash: {
+    type: Schema.Types.String,
+    trim: true,
+  },
   type: {
     type: Schema.Types.String,
-    required: true,
+    required: [true, "Моля предоставете тип на потребителя."],
     enum: UserTypes,
   },
   first_name: {
     type: Schema.Types.String,
-    required: [true, "Please provide a first name."],
+    required: [true, "Моля предоставете име на потребителя."],
     trim: true,
   },
   middle_name: {
     type: Schema.Types.String,
-    required: [true, "Please provide a middle name."],
+    required: [true, "Моля предоставете презиме на потребителя."],
     trim: true,
   },
   last_name: {
     type: Schema.Types.String,
-    required: [true, "Please provide a last name."],
+    required: [true, "Моля предоставете фамилия на потребителя."],
     trim: true,
   },
   capacity: {
@@ -37,11 +48,10 @@ const UserSchema = new Schema({
         enum: CertificateType,
       }),
     ],
-    required: [true, "Please provide one or more capacities."],
   },
   is_knob_member: {
     type: Schema.Types.Boolean,
-    required: true,
+    required: [true, "Моля предоставете информация дали потребителя е член на КНОБ."],
   },
   invalid_certificates: {
     type: [Schema.Types.ObjectId],
@@ -79,7 +89,7 @@ const UserSchema = new Schema({
   city: {
     type: Schema.Types.String,
     trim: true,
-    required: [true, "Please provide a city."],
+    required: [true, "Моля предоставете град на потребителя."],
     enum: BulgarianCitiesCyrillic,
   },
 });

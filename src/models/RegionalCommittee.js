@@ -4,7 +4,7 @@ import { BulgarianCitiesCyrillic } from "#constants/cities";
 const RegionalCommitteeSchema = new Schema({
   city: {
     type: Schema.Types.String,
-    required: [true, "Please provide a city for the regional committee."],
+    required: [true, "Моля предоставете град на регионален комитет."],
     enum: BulgarianCitiesCyrillic,
   },
   members: {

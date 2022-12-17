@@ -149,7 +149,7 @@ IsUserAdmin:
 
 ## API Endpoint
 NB: Send multi-part-form not json, receive JSON
-* `/api/create-admin-account`: IS_DEV POST JSON(User) -> Session Token
+* `/api/create-admin-account`: IS_DEV POST JSON(User) -> Session Token 
 * `/api/create-curator-account`: IS_DEV POST JSON(User) -> Session Token
 * `/api/login`: POST(email, password) -> Session Token
 * `/api/logout`: GET() -> Delete Session Token 

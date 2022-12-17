@@ -1,5 +1,5 @@
 import { db_handle_error, db_connect } from "#lib/db";
-import EuropeanStandard from "#models/EuropeanStandard";
+import SeminarItem from "#models/SeminarItem";
 import { is_curator } from "../lib/user_checks";
 
 export default async function (req, res) {
@@ -19,7 +19,7 @@ export default async function (req, res) {
       return;
     }
 
-    await EuropeanStandard.deleteOne({ _id: id });
+    await SeminarItem.deleteOne({ _id: id });
     res.status(200).json({});
   } catch (e) {
     if (db_handle_error(e, res)) return;

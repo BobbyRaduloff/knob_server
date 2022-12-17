@@ -4,29 +4,29 @@ import { CertificateType } from "#constants/certificates";
 const CertificateSchema = new Schema({
   number: {
     type: Schema.Types.Number,
-    required: [true, "Please provide a number."],
+    required: [true, "Моля предоставете номер на сертификата."],
     unique: true,
     min: 1,
   },
   owner: {
     type: Schema.Types.ObjectId,
-    required: true,
+    required: [true, "Моля предоставете собственик на сертификата."],
     refPath: "owner_type",
   },
   owner_type: {
     type: Schema.Types.String,
-    required: true,
+    required: [true, "Моля предоставете тип на собственик на сертификата."],
     enum: ["User", "Company"],
   },
   certificate_number: {
     type: Schema.Types.String,
-    required: [true, "Please provide a certificate number."],
+    required: [true, "Моля предоставете номер на сертификата."],
     trim: true,
     unique: true,
   },
   is_valid: {
     type: Schema.Types.Boolean,
-    required: true,
+    required: [true, "Моля предоставете информция за дали сертификата е валиден."],
   },
   reason_for_invalidation: {
     type: Schema.Types.String,
@@ -34,7 +34,7 @@ const CertificateSchema = new Schema({
   },
   certificate_type: {
     type: Schema.Types.String,
-    required: true,
+    required: [true, "Моля предоставете тип на сертификата."],
     enum: CertificateType,
   },
   new_certificate: {
