@@ -10,8 +10,13 @@ export default async function (req, res) {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
+    if (!user.password_hash) {
+      res.status(401).json({ error: "Невалиден имейл или парола!" });
+      return;
+    }
+
     if (!user || !bcrypt.compareSync(password, user.password_hash)) {
-      res.status(401).json({ error: "Invalid email or password!" });
+      res.status(401).json({ error: "Невалиден имейл или парола!" });
       return;
     }
 

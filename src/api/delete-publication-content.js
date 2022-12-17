@@ -4,7 +4,7 @@ import { is_curator } from "../lib/user_checks";
 
 export default async function (req, res) {
   try {
-    is_curator(req, res);
+    await is_curator(req, res);
   } catch (e) {
     console.log(e);
     return;

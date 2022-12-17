@@ -14,10 +14,6 @@ export default new Schema({
     type: Schema.Types.ObjectId,
     ref: "File",
   },
-  file: {
-    type: Schema.Types.ObjectId,
-    ref: "File",
-  },
   description: {
     type: Schema.Types.String,
     trim: true,

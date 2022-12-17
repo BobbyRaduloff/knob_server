@@ -11,7 +11,6 @@ export default new Schema({
     required: [true, "Моля предоставете имейл на член на комитета."],
     trim: true,
     lowercase: true,
-    unique: true,
     match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Моля предоставете валиден имейл."],
   },
   is_representative: {

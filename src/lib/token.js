@@ -6,9 +6,8 @@ export function generate_token(email) {
 
 export function validate_token(token) {
   try {
-    jwt.verify(token, process.env.TOKEN_SECRET);
-    return true;
+    return jwt.verify(token, process.env.TOKEN_SECRET).email;
   } catch (e) {
-    return false;
+    return null;
   }
 }

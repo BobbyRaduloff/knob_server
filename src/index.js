@@ -9,6 +9,7 @@ dotenv.config();
 // Outside Imports
 import express from "express";
 import multer from "multer";
+const upload = multer({ dest: "uploads/" });
 
 // Our Imports
 import create_admin_account from "#api/create-admin-account";
@@ -132,32 +133,32 @@ const del = [
 del.forEach((x) => app.delete(x.url, multer().none(), x.f));
 
 const get = [
-  { url: "/api/get-bulgarian-standards", f: get_bulgarian_standards },
-  { url: "/api/get-companies", f: get_companies },
-  { url: "/api/get-courses", f: get_courses },
-  { url: "/api/get-ethics-committee", f: get_ethics_committee },
-  { url: "/api/get-ethics-protocols", f: get_ethics_protocols },
-  { url: "/api/get-european-standards", f: get_european_standards },
-  { url: "/api/get-international-content", f: get_international_content },
-  { url: "/api/get-international-content-item", f: get_international_content_item },
-  { url: "/api/get-invalid-certificates", f: get_invalid_certificates },
-  { url: "/api/get-knob-content", f: get_knob_content },
-  { url: "/api/get-knob-content-item", f: get_knob_content_item },
-  { url: "/api/get-ks-committee", f: get_ks_committee },
-  { url: "/api/get-ks-protocols", f: get_ks_protocols },
-  { url: "/api/get-literature-content", f: get_literature_content },
-  { url: "/api/get-literature-content-item", f: get_literature_content_item },
-  { url: "/api/get-methodology-committee", f: get_methodology_committee },
-  { url: "/api/get-os-protocols", f: get_os_protocols },
-  { url: "/api/get-publication-content", f: get_publication_content },
-  { url: "/api/get-publication-content-item", f: get_publication_content_item },
-  { url: "/api/get-qualifications", f: get_qualifications },
-  { url: "/api/get-regional-committee", f: get_regional_committee },
-  { url: "/api/get-rev-registry", f: get_rev_registry },
-  { url: "/api/get-seminars", f: get_seminars },
-  { url: "/api/get-us-committee", f: get_us_committee },
-  { url: "/api/get-us-protocols", f: get_us_protocols },
-  { url: "/api/get-users", f: get_users },
+  { url: "/api/get-bulgarian-standards", f: get_bulgarian_standards }, // DONE
+  { url: "/api/get-companies", f: get_companies }, // DONE
+  { url: "/api/get-courses", f: get_courses }, // DONE
+  { url: "/api/get-ethics-committee", f: get_ethics_committee }, // DONE
+  { url: "/api/get-ethics-protocols", f: get_ethics_protocols }, // DONE
+  { url: "/api/get-european-standards", f: get_european_standards }, // DONE
+  { url: "/api/get-international-content", f: get_international_content }, // DONE
+  { url: "/api/get-international-content-item", f: get_international_content_item }, // DONE
+  { url: "/api/get-invalid-certificates", f: get_invalid_certificates }, // DONE
+  { url: "/api/get-knob-content", f: get_knob_content }, // DONE
+  { url: "/api/get-knob-content-item", f: get_knob_content_item }, // DONE
+  { url: "/api/get-ks-committee", f: get_ks_committee }, // DONE
+  { url: "/api/get-ks-protocols", f: get_ks_protocols }, // DONE
+  { url: "/api/get-literature-content", f: get_literature_content }, // DONE
+  { url: "/api/get-literature-content-item", f: get_literature_content_item }, // DONE
+  { url: "/api/get-methodology-committee", f: get_methodology_committee }, // DONE
+  { url: "/api/get-os-protocols", f: get_os_protocols }, // DONE
+  { url: "/api/get-publication-content", f: get_publication_content }, // DONE
+  { url: "/api/get-publication-content-item", f: get_publication_content_item }, // DONE
+  { url: "/api/get-qualifications", f: get_qualifications }, // DONE
+  { url: "/api/get-regional-committee", f: get_regional_committee }, // DONE
+  { url: "/api/get-rev-registry", f: get_rev_registry }, // DONE
+  { url: "/api/get-seminars", f: get_seminars }, // DONE
+  { url: "/api/get-us-committee", f: get_us_committee }, // DONE
+  { url: "/api/get-us-protocols", f: get_us_protocols }, // DONE
+  { url: "/api/get-users", f: get_users }, // DONE
   { url: "/api/is-user-logged-in", f: is_user_logged_in }, // DONE
   { url: "/api/is-user-curator", f: is_user_curator }, // DONE
   { url: "/api/is-user-admin", f: is_user_admin }, // DONE
@@ -168,30 +169,118 @@ const post = [
   { url: "/api/create-admin-account", f: create_admin_account }, // DONE
   { url: "/api/create-curator-account", f: create_curator_account }, // DONE
   { url: "/api/login", f: login }, // DONE
-  { url: "/api/post-bulgarian-standard", f: post_bulgarian_standard },
-  { url: "/api/post-company", f: post_company },
-  { url: "/api/post-course-item", f: post_course_item },
-  { url: "/api/post-deactivate-certificate", f: post_deactivate_certificate },
-  { url: "/api/post-ethics-committee-member", f: post_ethics_committee_member },
-  { url: "/api/post-ethics-protocol", f: post_ethics_protocol },
-  { url: "/api/post-european-standard", f: post_european_standard },
-  { url: "/api/post-international-content", f: post_international_content },
-  { url: "/api/post-knob-content", f: post_knob_content },
-  { url: "/api/post-ks-committee-member", f: post_ks_committee_member },
-  { url: "/api/post-ks-protocol", f: post_ks_protocol },
-  { url: "/api/post-literature-content", f: post_literature_content },
-  { url: "/api/post-methodology-committee-member", f: post_methodology_committee_member },
-  { url: "/api/post-os-protocol", f: post_os_protocol },
-  { url: "/api/post-publication-content", f: post_publication_content },
-  { url: "/api/post-qualification-item", f: post_qualification_item },
-  { url: "/api/post-regional-committee-member", f: post_regional_committee_member },
-  { url: "/api/post-rev", f: post_rev },
-  { url: "/api/post-seminar-item", f: post_seminar_item },
-  { url: "/api/post-us-committee-member", f: post_us_committee_member },
-  { url: "/api/post-us-protocol", f: post_us_protocol },
-  { url: "/api/post-user", f: post_user },
+  { url: "/api/post-rev", f: post_rev }, // DONE
+  { url: "/api/post-user", f: post_user }, // DONE
+  { url: "/api/post-company", f: post_company }, // DONE
+  { url: "/api/post-deactivate-certificate", f: post_deactivate_certificate }, // DONE
+  { url: "/api/post-ethics-committee-member", f: post_ethics_committee_member }, // DONE
+  { url: "/api/post-us-committee-member", f: post_us_committee_member }, // DONE
+  { url: "/api/post-ks-committee-member", f: post_ks_committee_member }, // DONE
+  { url: "/api/post-methodology-committee-member", f: post_methodology_committee_member }, // DONE
+  { url: "/api/post-regional-committee-member", f: post_regional_committee_member }, // DONE
+  { url: "/api/post-us-committee-member", f: post_us_committee_member }, // DONE
+  {
+    url: "/api/post-bulgarian-standard", // DONE
+    f: post_bulgarian_standard,
+    m: upload.array("file", 5),
+  },
+  {
+    url: "/api/post-european-standard", // DONE
+    f: post_european_standard,
+    m: upload.array("file", 5),
+  },
+  {
+    url: "/api/post-course-item", // DONE
+    f: post_course_item,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 3 },
+    ]),
+  },
+
+  {
+    url: "/api/post-ethics-protocol", // DONE
+    f: post_ethics_protocol,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 1 },
+    ]),
+  },
+
+  {
+    url: "/api/post-international-content", // DONE
+    f: post_international_content,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 1 },
+    ]),
+  },
+  {
+    url: "/api/post-knob-content", // DONE
+    f: post_knob_content,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 1 },
+    ]),
+  },
+  {
+    url: "/api/post-ks-protocol", // DONE
+    f: post_ks_protocol,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 1 },
+    ]),
+  },
+  {
+    url: "/api/post-literature-content", // DONE
+    f: post_literature_content,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 1 },
+    ]),
+  },
+  {
+    url: "/api/post-os-protocol", // DONE
+    f: post_os_protocol,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 1 },
+    ]),
+  },
+  {
+    url: "/api/post-publication-content", // DONE
+    f: post_publication_content,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 1 },
+    ]),
+  },
+  {
+    url: "/api/post-qualification-item", // DONE
+    f: post_qualification_item,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 3 },
+    ]),
+  },
+  {
+    url: "/api/post-seminar-item", // DONE
+    f: post_seminar_item,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 3 },
+    ]),
+  },
+  {
+    url: "/api/post-us-protocol", // DONE
+    f: post_us_protocol,
+    m: upload.fields([
+      { name: "picture", maxCount: 1 },
+      { name: "file", maxCount: 1 },
+    ]),
+  },
 ];
-post.forEach((x) => app.post(x.url, multer().none(), x.f));
+post.forEach((x) => app.post(x.url, x.m ? x.m : multer().none(), x.f));
 
 const put = [
   { url: "/api/put-bulgarian-standard", f: put_bulgarian_standard },

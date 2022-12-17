@@ -4,7 +4,7 @@ import { is_logged_in } from "#lib/user_checks";
 
 export default async function (req, res) {
   try {
-    is_logged_in(req, res);
+    await is_logged_in(req, res);
   } catch (e) {
     console.log(e);
     return;

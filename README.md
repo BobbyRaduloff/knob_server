@@ -201,8 +201,8 @@ NB: Send multi-part-form not json, receive JSON
 * `/api/post-ethics-protocol`: IsUserCurator (Protocol) -> ()
 * `/api/post-os-protocol`: IsUserCurator (Protocol) -> ()
 * `/api/post-rev`: IsUserCurator (REV) -> ()
-* `/api/post-user`: IsUserAdmin (User) -> ()
-* `/api/post-company`: IsUserCompany (Company) -> ()
+* `/api/post-user`: IsUserAdmin (User, cert shit check code) -> ()
+* `/api/post-company`: IsUserCompany (Company, cert shit check code) -> ()
 * `/api/put-knob-content`: IsUserCurator (KNOBContent) -> ()
 * `/api/put-literature-content`: IsUserCurator (LiteratureContent) -> ()
 * `/api/put-publication-content`: IsUserCurator (PublicationContent) -> ()
@@ -224,7 +224,7 @@ NB: Send multi-part-form not json, receive JSON
 * `/api/put-rev`: IsUserCurator (REV) -> ()
 * `/api/put-user`: IsUserAdmin (User) -> ()
 * `/api/put-company`: IsUserAdmin (Company) -> ()
-* `/api/post-deactivate-certificate`: IsUserAdmin (User/Company ID, new optional, reasonforinvalidation) -> () create new if present, set new to previous if new
+* `/api/post-deactivate-certificate`: IsUserAdmin (User/Company ID, Type, new optional, reasonforinvalidation, cert type) -> () create new if present, set new to previous if new
 * `/api/delete-knob-content`: IsUserCurator (KNOBContent) -> ()
 * `/api/delete-literature-content`: IsUserCurator (LiteratureContent) -> ()
 * `/api/delete-publication-content`: IsUserCurator (PublicationContent) -> ()
