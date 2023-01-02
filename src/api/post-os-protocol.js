@@ -28,37 +28,33 @@ export default async function (req, res) {
   copyFileSync(req.files.picture[0].path, picture_new_path);
   unlinkSync(req.files.picture[0].path);
 
-  let files = [];
-  for (let i = 0; i < req.files.file.length; i++) {
-    //check if file type is pdf, docx, or pptx
-    if (
-      req.files.file[0].mimetype != "application/vnd.openxmlformats-officedocument.wordprocessingml.document" &&
-      req.files.file[0].mimetype != "application/pdf" &&
-      req.files.file[0].mimetype != "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-    ) {
-      res.status(400).json({ error: "Incorrect file type" });
-      return;
-    }
+  let file;
+  //check if file type is pdf, docx, or pptx
+  if (
+    req.files.file[0].mimetype != "application/vnd.openxmlformats-officedocument.wordprocessingml.document" &&
+    req.files.file[0].mimetype != "application/pdf" &&
+    req.files.file[0].mimetype != "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+  ) {
+    res.status(400).json({ error: "Incorrect file type" });
+    return;
+  }
 
-    const file_id = uuidv4();
-    const file_new_path = "uploads/" + file_id + "." + req.files.file[i].originalname.split(".").pop();
-    copyFileSync(req.files.file[i].path, file_new_path);
-    unlinkSync(req.files.file[i].path);
+  const file_id = uuidv4();
+  const file_new_path = "uploads/" + file_id + "." + req.files.file[0].originalname.split(".").pop();
+  copyFileSync(req.files.file[0].path, file_new_path);
+  unlinkSync(req.files.file[0].path);
 
-    try {
-      await db_connect();
+  try {
+    await db_connect();
 
-      const file = await File.create({
-        name: req.files.file[0].originalname,
-        path: file_new_path,
-        mimetype: req.files.file[0].mimetype,
-      });
-
-      files.push(file._id);
-    } catch (e) {
-      console.log(e);
-      if (db_handle_error(e, res)) return;
-    }
+    file = await File.create({
+      name: req.files.file[0].originalname,
+      path: file_new_path,
+      mimetype: req.files.file[0].mimetype,
+    });
+  } catch (e) {
+    console.log(e);
+    if (db_handle_error(e, res)) return;
   }
 
   try {
@@ -73,7 +69,7 @@ export default async function (req, res) {
     await OSProtocol.create({
       title: req.body.title,
       picture: picture._id,
-      files,
+      file,
       description: req.body.description,
     });
 

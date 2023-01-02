@@ -34,7 +34,6 @@ export default async function (req, res) {
     first_name: req.body.first_name,
     middle_name: req.body.middle_name,
     last_name: req.body.last_name,
-    capacity: req.body.capacity,
     is_knob_member: req.body.is_knob_member,
     city: req.body.city,
   };
@@ -77,6 +76,13 @@ export default async function (req, res) {
 
     const number = (await User.countDocuments()) + 1;
     user.number = number;
+    user.type = "Guest";
+
+    let capacity = [];
+    req.body.capacity.forEach((c) => {
+      capacity.push({ value: c });
+    });
+    user.capacity = capacity;
 
     const u = await User.create(user);
 
@@ -85,6 +91,7 @@ export default async function (req, res) {
       const certificate_num = (await Certificate.countDocuments()) + 1;
       certificate = await Certificate.create({
         number: certificate_num,
+        certificate_number: certificate_number,
         owner: u._id,
         owner_type: "User",
         is_valid: true,

@@ -37,7 +37,8 @@ export default async function (req, res) {
         $push: {
           members: x._id,
         },
-      }
+      },
+      { upsert: true }
     );
 
     res.status(200).json({});

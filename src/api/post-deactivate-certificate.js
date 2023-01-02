@@ -13,14 +13,12 @@ export default async function (req, res) {
     return;
   }
 
-  if (!req.body.id || !req.body.capacity || !req.body.reason_for_invalidation) {
+  if (!req.body.id || !req.body.reason_for_invalidation) {
     res.status(400).json({ error: "Непълна информация." });
     return;
   }
 
-  let certificate_number = null;
   if (req.body.certificate_number) {
-    certificate_number = req.body.certificate_number;
     if (!req.body.certificate_type || CertificateType.indexOf(req.body.certificate_type) == -1) {
       res.status(400).json({ error: "Непълна информация." });
       return;
@@ -30,20 +28,21 @@ export default async function (req, res) {
   try {
     await db_connect();
 
-    const number = (await Certificate.countDocuments()) + 1;
-
-    const old_cert = await Certificate.findOne({ certificate_number: req.body.certificate_number });
+    const old_cert = await Certificate.findOne({ _id: req.body.id });
     if (!old_cert) {
       res.status(400).json({ error: "Невалиден номер на сертификат." });
       return;
     }
 
     let new_cert = null;
-    if (!certificate_number) {
+    if (req.body.certificate_number) {
+      const number = (await Certificate.countDocuments()) + 1;
+
       new_cert = await Certificate.create({
         number: number,
+        certificate_number: req.body.certificate_number,
         owner: old_cert.owner,
-        owner_type: old_cert.type,
+        owner_type: old_cert.owner_type,
         is_valid: true,
         certificate_type: req.body.certificate_type,
       });
@@ -69,7 +68,7 @@ export default async function (req, res) {
       );
     }
 
-    if (old_cert.type === "Company") {
+    if (old_cert.owner_type === "Company") {
       if (new_cert) {
         await Company.findOneAndUpdate(
           { _id: old_cert.owner },
@@ -86,6 +85,9 @@ export default async function (req, res) {
         await Company.findOneAndUpdate(
           { _id: old_cert.owner },
           {
+            $unset: {
+              current_valid_certificate: "",
+            },
             $push: {
               invalid_certificates: old_cert._id,
             },
@@ -109,6 +111,9 @@ export default async function (req, res) {
         await User.findOneAndUpdate(
           { _id: old_cert.owner },
           {
+            $unset: {
+              current_valid_certificate: "",
+            },
             $push: {
               invalid_certificates: old_cert._id,
             },

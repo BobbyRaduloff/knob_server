@@ -18,9 +18,14 @@ export default async function (req, res) {
     !req.body.latin_name ||
     !req.body.cyrilic_name ||
     !req.body.latin_city ||
-    !req.body.cycilic_name
+    !req.body.cyrilic_city
   ) {
     res.status(400).json({ error: "Непълна информация." });
+    return;
+  }
+
+  if (new Date(req.body.issued_on) > new Date(req.body.valid_until)) {
+    res.status(400).json({ error: "Невалидна дата." });
     return;
   }
 
@@ -29,7 +34,7 @@ export default async function (req, res) {
     return;
   }
 
-  if (BulgarianCitiesCyrilic.indexOf(req.body.cycilic_name) === -1) {
+  if (BulgarianCitiesCyrilic.indexOf(req.body.cyrilic_city) === -1) {
     res.status(400).json({ error: "Невалиден град." });
     return;
   }

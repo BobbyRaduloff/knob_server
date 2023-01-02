@@ -59,6 +59,7 @@ import get_seminars from "#api/get-seminars";
 import get_us_committee from "#api/get-us-committee";
 import get_us_protocols from "#api/get-us-protocols";
 import get_users from "#api/get-users";
+import get_user_type from "#api/get-user-type";
 import is_user_admin from "#api/is-user-admin";
 import is_user_curator from "#api/is-user-curator";
 import is_user_logged_in from "#api/is-user-logged-in";
@@ -133,8 +134,8 @@ const del = [
 del.forEach((x) => app.delete(x.url, multer().none(), x.f));
 
 const get = [
-  { url: "/api/get-bulgarian-standards", f: get_bulgarian_standards }, // DONE
-  { url: "/api/get-companies", f: get_companies }, // DONE
+  { url: "/api/get-bulgarian-standards", f: get_bulgarian_standards }, // DONEE
+  { url: "/api/get-companies", f: get_companies }, // DONEE
   { url: "/api/get-courses", f: get_courses }, // DONE
   { url: "/api/get-ethics-committee", f: get_ethics_committee }, // DONE
   { url: "/api/get-ethics-protocols", f: get_ethics_protocols }, // DONE
@@ -162,6 +163,7 @@ const get = [
   { url: "/api/is-user-logged-in", f: is_user_logged_in }, // DONE
   { url: "/api/is-user-curator", f: is_user_curator }, // DONE
   { url: "/api/is-user-admin", f: is_user_admin }, // DONE
+  { url: "/api/get-user-type", f: get_user_type }, // DONE
 ];
 get.forEach((x) => app.get(x.url, multer().none(), x.f));
 
@@ -178,7 +180,6 @@ const post = [
   { url: "/api/post-ks-committee-member", f: post_ks_committee_member }, // DONE
   { url: "/api/post-methodology-committee-member", f: post_methodology_committee_member }, // DONE
   { url: "/api/post-regional-committee-member", f: post_regional_committee_member }, // DONE
-  { url: "/api/post-us-committee-member", f: post_us_committee_member }, // DONE
   {
     url: "/api/post-bulgarian-standard", // DONE
     f: post_bulgarian_standard,

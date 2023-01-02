@@ -6,13 +6,12 @@ import { UserTypes } from "#constants/users";
 const UserSchema = new Schema({
   number: {
     type: Schema.Types.Number,
-    required: [true, "Моля предоставете номер на сертификата."],
+    required: [true, "Моля предоставете номер на потребителя."],
     unique: true,
     min: 1,
   },
   email: {
     type: Schema.Types.String,
-    required: [true, "Моля предоставете имейл на потребителя."],
     trim: true,
     unique: [true, "Този имейл вече е зает."],
     match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Моля предоставете валиден имейл."],

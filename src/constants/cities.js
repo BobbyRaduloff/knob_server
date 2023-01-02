@@ -1,6 +1,6 @@
 import translitbg from "translitbg";
 
-export const BulgarianCitiesCyrillic = [
+export const BulgarianCitiesCyrilic = [
   "с. Дряново",
   "Айтос",
   "Аксаково",
@@ -279,7 +279,7 @@ export const BulgarianCitiesCyrillic = [
   "Ямбол",
 ];
 
-export const BulgarianCitiesLatin = BulgarianCitiesCyrillic.map((c) => {
+export const BulgarianCitiesLatin = BulgarianCitiesCyrilic.map((c) => {
   const cap = (x) => x.charAt(0).toUpperCase() + x.slice(1);
 
   const s = c.split(" ");

@@ -58,6 +58,7 @@ const CompanySchema = new Schema({
     type: Schema.Types.String,
     trim: true,
     unique: true,
+    required: [true, "Моля предоставете ЕИК на фирмата."],
   },
   valuers: {
     type: [Schema.Types.ObjectId],

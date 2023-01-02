@@ -10,6 +10,8 @@ export async function db_connect() {
     return cached.conn;
   }
 
+  mongoose.set("strictQuery", true);
+
   if (!cached.promise) {
     const opts = {
       useNewUrlParser: true,

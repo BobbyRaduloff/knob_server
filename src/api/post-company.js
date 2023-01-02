@@ -14,7 +14,8 @@ export default async function (req, res) {
     return;
   }
 
-  if (!req.body.name || !req.body.capacity || !req.body.is_knob_member || !req.body.city) {
+  if (!req.body.name || !req.body.capacity || !req.body.is_knob_member || !req.body.city || !req.body.valuers) {
+    console.log("ADS");
     res.status(400).json({ error: "Непълна информация." });
     return;
   }
@@ -29,13 +30,14 @@ export default async function (req, res) {
     capacity: req.body.capacity,
     is_knob_member: req.body.is_knob_member,
     city: req.body.city,
+    valuers: req.body.valuers,
   };
 
   let certificate_number = null;
   if (req.body.certificate_number) {
     certificate_number = req.body.certificate_number;
     if (!req.body.certificate_type || CertificateType.indexOf(req.body.certificate_type) == -1) {
-      res.status(400).json({ error: "Непълна информация." });
+      console.log(CertificateType.indexOf(req.body.certificate_type));
       return;
     }
   }
@@ -60,15 +62,11 @@ export default async function (req, res) {
     company.eik = req.body.eik;
   }
 
-  if (req.body.valuers) {
-    company.valuers = req.body.valuers;
-  }
-
   try {
     await db_connect();
 
     for (let i = 0; i < company.valuers.length; i++) {
-      const valuer = await User.findOne({ id: company.valuer[i]._id });
+      const valuer = await User.findOne({ id: company.valuers[i]._id });
       if (!valuer) {
         res.status(400).json({ error: "Невалиден оценител." });
         return;
@@ -78,6 +76,12 @@ export default async function (req, res) {
     const number = (await Company.countDocuments()) + 1;
     company.number = number;
 
+    let capacity = [];
+    req.body.capacity.forEach((c) => {
+      capacity.push({ value: c });
+    });
+    company.capacity = capacity;
+
     const c = await Company.create(company);
 
     let certificate = null;
@@ -85,6 +89,7 @@ export default async function (req, res) {
       const certificate_num = (await Certificate.countDocuments()) + 1;
       certificate = await Certificate.create({
         number: certificate_num,
+        certificate_number: certificate_number,
         owner: c._id,
         owner_type: "Company",
         is_valid: true,
