@@ -1,0 +1,16 @@
+{
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      ["module-resolver", {
+        "alias": {
+          "#constants": "./src/constants",
+          "#models": "./src/models",
+          "#parents": "./src/models/parents",
+          "#api": "./src/api",
+          "#lib": "./src/lib"
+        }
+      }]
+    ]
+  }
