@@ -10,6 +10,8 @@ dotenv.config();
 import express from "express";
 import multer from "multer";
 const upload = multer({ dest: "uploads/" });
+import cors from "cors";
+import path from "path";
 
 // Our Imports
 import create_admin_account from "#api/create-admin-account";
@@ -109,6 +111,8 @@ import put_user from "#api/put-user";
 
 // Run Server
 const app = express();
+app.use(cors());
+app.use("/uploads", express.static(path.join(__dirname, "/../uploads")));
 
 const del = [
   { url: "/api/delete-bulgarian-standard", f: delete_bulgarian_standard }, // DONE
@@ -135,31 +139,31 @@ del.forEach((x) => app.delete(x.url, multer().none(), x.f));
 
 const get = [
   { url: "/api/get-bulgarian-standards", f: get_bulgarian_standards }, // DONEE
+  { url: "/api/get-european-standards", f: get_european_standards }, // DONEE
   { url: "/api/get-companies", f: get_companies }, // DONEE
-  { url: "/api/get-courses", f: get_courses }, // DONE
-  { url: "/api/get-ethics-committee", f: get_ethics_committee }, // DONE
-  { url: "/api/get-ethics-protocols", f: get_ethics_protocols }, // DONE
-  { url: "/api/get-european-standards", f: get_european_standards }, // DONE
-  { url: "/api/get-international-content", f: get_international_content }, // DONE
-  { url: "/api/get-international-content-item", f: get_international_content_item }, // DONE
-  { url: "/api/get-invalid-certificates", f: get_invalid_certificates }, // DONE
-  { url: "/api/get-knob-content", f: get_knob_content }, // DONE
-  { url: "/api/get-knob-content-item", f: get_knob_content_item }, // DONE
-  { url: "/api/get-ks-committee", f: get_ks_committee }, // DONE
-  { url: "/api/get-ks-protocols", f: get_ks_protocols }, // DONE
+  { url: "/api/get-users", f: get_users }, // DONEE
+  { url: "/api/get-courses", f: get_courses }, // DONEE
+  { url: "/api/get-ethics-committee", f: get_ethics_committee }, // DONEE
+  { url: "/api/get-ks-committee", f: get_ks_committee }, // DONEE
+  { url: "/api/get-regional-committee", f: get_regional_committee }, // DONEE
+  { url: "/api/get-methodology-committee", f: get_methodology_committee }, // DONEE
+  { url: "/api/get-us-committee", f: get_us_committee }, // DONEE
+  { url: "/api/get-ethics-protocols", f: get_ethics_protocols }, // DONEE
+  { url: "/api/get-ks-protocols", f: get_ks_protocols }, // DONEE
+  { url: "/api/get-os-protocols", f: get_os_protocols }, // DONEE
+  { url: "/api/get-us-protocols", f: get_us_protocols }, // DONEE
+  { url: "/api/get-international-content", f: get_international_content }, // DONEE
+  { url: "/api/get-international-content-item", f: get_international_content_item }, // DONEE
+  { url: "/api/get-knob-content", f: get_knob_content }, // DONEE
+  { url: "/api/get-knob-content-item", f: get_knob_content_item }, // DONEE
   { url: "/api/get-literature-content", f: get_literature_content }, // DONE
   { url: "/api/get-literature-content-item", f: get_literature_content_item }, // DONE
-  { url: "/api/get-methodology-committee", f: get_methodology_committee }, // DONE
-  { url: "/api/get-os-protocols", f: get_os_protocols }, // DONE
   { url: "/api/get-publication-content", f: get_publication_content }, // DONE
   { url: "/api/get-publication-content-item", f: get_publication_content_item }, // DONE
+  { url: "/api/get-invalid-certificates", f: get_invalid_certificates }, // DONE
   { url: "/api/get-qualifications", f: get_qualifications }, // DONE
-  { url: "/api/get-regional-committee", f: get_regional_committee }, // DONE
   { url: "/api/get-rev-registry", f: get_rev_registry }, // DONE
   { url: "/api/get-seminars", f: get_seminars }, // DONE
-  { url: "/api/get-us-committee", f: get_us_committee }, // DONE
-  { url: "/api/get-us-protocols", f: get_us_protocols }, // DONE
-  { url: "/api/get-users", f: get_users }, // DONE
   { url: "/api/is-user-logged-in", f: is_user_logged_in }, // DONE
   { url: "/api/is-user-curator", f: is_user_curator }, // DONE
   { url: "/api/is-user-admin", f: is_user_admin }, // DONE
