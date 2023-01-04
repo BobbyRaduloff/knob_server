@@ -156,14 +156,14 @@ const get = [
   { url: "/api/get-international-content-item", f: get_international_content_item }, // DONEE
   { url: "/api/get-knob-content", f: get_knob_content }, // DONEE
   { url: "/api/get-knob-content-item", f: get_knob_content_item }, // DONEE
-  { url: "/api/get-literature-content", f: get_literature_content }, // DONE
-  { url: "/api/get-literature-content-item", f: get_literature_content_item }, // DONE
-  { url: "/api/get-publication-content", f: get_publication_content }, // DONE
-  { url: "/api/get-publication-content-item", f: get_publication_content_item }, // DONE
-  { url: "/api/get-invalid-certificates", f: get_invalid_certificates }, // DONE
-  { url: "/api/get-qualifications", f: get_qualifications }, // DONE
-  { url: "/api/get-rev-registry", f: get_rev_registry }, // DONE
-  { url: "/api/get-seminars", f: get_seminars }, // DONE
+  { url: "/api/get-literature-content", f: get_literature_content }, // DONEE
+  { url: "/api/get-literature-content-item", f: get_literature_content_item }, // DONEE
+  { url: "/api/get-publication-content", f: get_publication_content }, // DONEE
+  { url: "/api/get-publication-content-item", f: get_publication_content_item }, // DONEE
+  { url: "/api/get-invalid-certificates", f: get_invalid_certificates }, // DONEE
+  { url: "/api/get-qualifications", f: get_qualifications }, // DONEE
+  { url: "/api/get-rev-registry", f: get_rev_registry }, // DONEE
+  { url: "/api/get-seminars", f: get_seminars }, // DONEE
   { url: "/api/is-user-logged-in", f: is_user_logged_in }, // DONE
   { url: "/api/is-user-curator", f: is_user_curator }, // DONE
   { url: "/api/is-user-admin", f: is_user_admin }, // DONE
