@@ -9,6 +9,11 @@ export default async function (req, res) {
 
     const { email, password } = req.body;
 
+    if (!email || !password) {
+      res.status(400).json({ error: "Невалиден имейл или парола!" });
+      return;
+    }
+
     const user = await User.findOne({ email });
     if (!user.password_hash) {
       res.status(401).json({ error: "Невалиден имейл или парола!" });

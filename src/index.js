@@ -114,29 +114,6 @@ const app = express();
 app.use(cors());
 app.use("/uploads", express.static(path.join(__dirname, "/../uploads")));
 
-const del = [
-  { url: "/api/delete-bulgarian-standard", f: delete_bulgarian_standard }, // DONE
-  { url: "/api/delete-course-item", f: delete_course_item }, // DONE
-  { url: "/api/delete-ethics-committee-member", f: delete_ethics_committee_member }, // DONE
-  { url: "/api/delete-ethics-protocol", f: delete_ethics_protocol }, // DONE
-  { url: "/api/delete-european-standard", f: delete_european_standard }, // DONE
-  { url: "/api/delete-international-content", f: delete_international_content }, // DONE
-  { url: "/api/delete-knob-content", f: delete_knob_content }, // DONE
-  { url: "/api/delete-ks-committee-member", f: delete_ks_committee_member }, // DONE
-  { url: "/api/delete-ks-protocol", f: delete_ks_protocol }, // DONE
-  { url: "/api/delete-literature-content", f: delete_literature_content }, // DONE
-  { url: "/api/delete-methodology-committee-member", f: delete_methodology_committee_member }, // DONE
-  { url: "/api/delete-os-protocol", f: delete_os_protocol }, // DONE
-  { url: "/api/delete-publication-content", f: delete_publication_content }, // DONE
-  { url: "/api/delete-qualification-item", f: delete_qualification_item }, // DONE
-  { url: "/api/delete-regional-committee-member", f: delete_regional_committee_member }, // DONE
-  { url: "/api/delete-rev", f: delete_rev }, // DONE
-  { url: "/api/delete-seminar-item", f: delete_seminar_item }, // DONE
-  { url: "/api/delete-us-committee-member", f: delete_us_committee_member }, // DONE
-  { url: "/api/delete-us-protocol", f: delete_us_protocol }, // DONE
-];
-del.forEach((x) => app.delete(x.url, multer().none(), x.f));
-
 const get = [
   { url: "/api/get-bulgarian-standards", f: get_bulgarian_standards }, // DONEE
   { url: "/api/get-european-standards", f: get_european_standards }, // DONEE
@@ -286,6 +263,29 @@ const post = [
   },
 ];
 post.forEach((x) => app.post(x.url, x.m ? x.m : multer().none(), x.f));
+
+const del = [
+  { url: "/api/delete-bulgarian-standard", f: delete_bulgarian_standard }, // DONE
+  { url: "/api/delete-course-item", f: delete_course_item }, // DONE
+  { url: "/api/delete-ethics-committee-member", f: delete_ethics_committee_member }, // DONE
+  { url: "/api/delete-ethics-protocol", f: delete_ethics_protocol }, // DONE
+  { url: "/api/delete-european-standard", f: delete_european_standard }, // DONE
+  { url: "/api/delete-international-content", f: delete_international_content }, // DONE
+  { url: "/api/delete-knob-content", f: delete_knob_content }, // DONE
+  { url: "/api/delete-ks-committee-member", f: delete_ks_committee_member }, // DONE
+  { url: "/api/delete-ks-protocol", f: delete_ks_protocol }, // DONE
+  { url: "/api/delete-literature-content", f: delete_literature_content }, // DONE
+  { url: "/api/delete-methodology-committee-member", f: delete_methodology_committee_member }, // DONE
+  { url: "/api/delete-os-protocol", f: delete_os_protocol }, // DONE
+  { url: "/api/delete-publication-content", f: delete_publication_content }, // DONE
+  { url: "/api/delete-qualification-item", f: delete_qualification_item }, // DONE
+  { url: "/api/delete-regional-committee-member", f: delete_regional_committee_member }, // DONE
+  { url: "/api/delete-rev", f: delete_rev }, // DONE
+  { url: "/api/delete-seminar-item", f: delete_seminar_item }, // DONE
+  { url: "/api/delete-us-committee-member", f: delete_us_committee_member }, // DONE
+  { url: "/api/delete-us-protocol", f: delete_us_protocol }, // DONE
+];
+del.forEach((x) => app.delete(x.url, multer().none(), x.f));
 
 const put = [
   { url: "/api/put-bulgarian-standard", f: put_bulgarian_standard },
