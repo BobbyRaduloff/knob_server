@@ -59,6 +59,7 @@ export default async function (req, res) {
     await EuropeanStandard.create({
       title: req.body.title,
       files,
+      language: req.body.language,
     });
 
     res.status(200).json({});
