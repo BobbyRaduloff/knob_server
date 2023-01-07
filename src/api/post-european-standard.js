@@ -13,8 +13,13 @@ export default async function (req, res) {
     return;
   }
 
-  if (!req.body.title || !req.files) {
+  if (!req.body.title || !req.files || !req.body.language) {
     res.status(400).json({ error: "Непълна информация." });
+    return;
+  }
+
+  if (req.body.language !== "en" || req.body.language !== "bg") {
+    res.status(400).json({ error: "Невалиден език." });
     return;
   }
 

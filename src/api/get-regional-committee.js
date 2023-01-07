@@ -2,7 +2,7 @@ import { db_handle_error, db_connect } from "#lib/db";
 import RegionalCommittee from "#models/RegionalCommittee";
 
 export default async function (req, res) {
-  if (!req.body.city) {
+  if (!req.query.city) {
     res.status(400).json({ error: "Моля изберете град!" });
     return;
   }
@@ -10,7 +10,7 @@ export default async function (req, res) {
   try {
     await db_connect();
 
-    const x = await RegionalCommittee.findOne({ city: req.body.city }).populate("members");
+    const x = await RegionalCommittee.findOne({ city: req.query.city }).populate("members");
     if (!x) {
       res.status(400).json({ error: "Няма регионален комитет за този град!" });
       return;

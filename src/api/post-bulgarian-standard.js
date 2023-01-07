@@ -13,8 +13,13 @@ export default async function (req, res) {
     return;
   }
 
-  if (!req.body.title || !req.files) {
+  if (!req.body.title || !req.files || !req.body.language) {
     res.status(400).json({ error: "Непълна информация." });
+    return;
+  }
+
+  if (req.body.language !== "en" || req.body.language !== "bg") {
+    res.status(400).json({ error: "Невалиден език." });
     return;
   }
 
@@ -54,6 +59,7 @@ export default async function (req, res) {
     await BulgarianStandard.create({
       title: req.body.title,
       files,
+      language: req.body.language,
     });
 
     res.status(200).json({});

@@ -14,4 +14,10 @@ export default new Schema({
     type: Schema.Types.Date,
     default: Date.now,
   },
+  language: {
+    type: Schema.Types.String,
+    required: [true, "Моля предоставете език на съдържанието."],
+    trim: true,
+    enum: ["bg", "en"],
+  },
 });
