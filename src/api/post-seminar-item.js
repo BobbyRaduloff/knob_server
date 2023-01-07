@@ -49,9 +49,9 @@ export default async function (req, res) {
       await db_connect();
 
       const file = await File.create({
-        name: req.files.file[0].originalname,
+        name: req.files.file[i].originalname,
         path: file_new_path,
-        mimetype: req.files.file[0].mimetype,
+        mimetype: req.files.file[i].mimetype,
       });
 
       files.push(file._id);
