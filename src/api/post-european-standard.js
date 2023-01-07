@@ -18,7 +18,7 @@ export default async function (req, res) {
     return;
   }
 
-  if (req.body.language !== "en" || req.body.language !== "bg") {
+  if (req.body.language !== "en" && req.body.language !== "bg") {
     res.status(400).json({ error: "Невалиден език." });
     return;
   }
