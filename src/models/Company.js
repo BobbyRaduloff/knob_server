@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 import { CertificateType } from "#constants/certificates";
-import { BulgarianCitiesCyrillic } from "#constants/cities";
 
 const CompanySchema = new Schema({
   number: {
@@ -18,7 +17,6 @@ const CompanySchema = new Schema({
     type: Schema.Types.String,
     trim: true,
     required: [true, "Моля предоставете град на фирмата."],
-    enum: BulgarianCitiesCyrillic,
   },
   capacity: {
     type: [

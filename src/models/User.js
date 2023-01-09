@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 import { CertificateType } from "#constants/certificates";
-import { BulgarianCitiesCyrillic } from "#constants/cities";
 import { UserTypes } from "#constants/users";
 
 const UserSchema = new Schema({
@@ -89,7 +88,6 @@ const UserSchema = new Schema({
     type: Schema.Types.String,
     trim: true,
     required: [true, "Моля предоставете град на потребителя."],
-    enum: BulgarianCitiesCyrillic,
   },
 });
 

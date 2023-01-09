@@ -1,7 +1,6 @@
 import { db_handle_error, db_connect } from "#lib/db";
 import REV from "#models/REV";
 import { is_curator } from "#lib/user_checks";
-import { BulgarianCitiesLatin, BulgarianCitiesCyrilic } from "#constants/cities";
 
 export default async function (req, res) {
   try {
@@ -18,7 +17,8 @@ export default async function (req, res) {
     !req.body.latin_name ||
     !req.body.cyrilic_name ||
     !req.body.latin_city ||
-    !req.body.cyrilic_city
+    !req.body.cyrilic_city ||
+    !req.body.telephone
   ) {
     res.status(400).json({ error: "Непълна информация." });
     return;
@@ -26,16 +26,6 @@ export default async function (req, res) {
 
   if (new Date(req.body.issued_on) > new Date(req.body.valid_until)) {
     res.status(400).json({ error: "Невалидна дата." });
-    return;
-  }
-
-  if (BulgarianCitiesLatin.indexOf(req.body.latin_city) === -1) {
-    res.status(400).json({ error: "Невалиден град." });
-    return;
-  }
-
-  if (BulgarianCitiesCyrilic.indexOf(req.body.cyrilic_city) === -1) {
-    res.status(400).json({ error: "Невалиден град." });
     return;
   }
 
@@ -50,6 +40,7 @@ export default async function (req, res) {
       cyrilic_name: req.body.cyrilic_name,
       latin_city: req.body.latin_city,
       cyrilic_city: req.body.cyrilic_city,
+      telephone: req.body.telephone,
     });
 
     res.status(200).json({});

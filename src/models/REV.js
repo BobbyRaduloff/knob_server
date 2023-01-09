@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import { BulgarianCitiesCyrillic, BulgarianCitiesLatin } from "#constants/cities";
 
 const REVSchema = new Schema({
   certificate_number: {
@@ -27,12 +26,14 @@ const REVSchema = new Schema({
   latin_city: {
     type: Schema.Types.String,
     required: [true, "Моля предоставете град на латиница."],
-    enum: BulgarianCitiesLatin,
   },
   cyrilic_city: {
     type: Schema.Types.String,
     required: [true, "Моля предоставете град на кирилица."],
-    enum: BulgarianCitiesCyrillic,
+  },
+  telephone: {
+    type: Schema.Types.String,
+    required: [true, "Моля предоставете телефон."],
   },
 });
 

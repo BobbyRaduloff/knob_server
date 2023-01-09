@@ -2,7 +2,6 @@ import { db_handle_error, db_connect } from "#lib/db";
 import Company from "#models/Company";
 import User from "#models/User";
 import Certificate from "#models/Certificate";
-import { BulgarianCitiesCyrilic } from "#constants/cities";
 import { CertificateType } from "#constants/certificates";
 import { is_admin } from "#lib/user_checks";
 
@@ -17,11 +16,6 @@ export default async function (req, res) {
   if (!req.body.name || !req.body.capacity || !req.body.is_knob_member || !req.body.city || !req.body.valuers) {
     console.log("ADS");
     res.status(400).json({ error: "Непълна информация." });
-    return;
-  }
-
-  if (BulgarianCitiesCyrilic.indexOf(req.body.city) === -1) {
-    res.status(400).json({ error: "Невалиден град." });
     return;
   }
 

@@ -6,22 +6,36 @@ export default async function (req, res) {
     await db_connect();
 
     if (req.query) {
-      const cap = (x) => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase();
+      if (req.query.cyrilic_name === "") {
+        delete req.query.cyrilic_name;
+      }
+      if (req.query.latin_name === "") {
+        delete req.query.latin_name;
+      }
+      if (req.query.cyrilic_city === "") {
+        delete req.query.cyrilic_city;
+      }
+      if (req.query.latin_city === "") {
+        delete req.query.latin_city;
+      }
+      if (req.query.certificate_number === "") {
+        delete req.query.certificate_number;
+      }
       try {
         if (req.query.cyrilic_name) {
-          const s = req.query.cyrilic_name.split(" ");
-          console.log(s);
-          req.query.cyrilic_name = cap(s[0]) + " " + cap(s[1]) + " " + cap(s[2]);
+          req.query.cyrilic_name = { $regex: req.query.cyrilic_name, $options: "i" };
         }
         if (req.query.latin_name) {
-          const s = req.query.latin_name.split(" ");
-          req.query.latin_name = cap(s[0]) + " " + cap(s[1]) + " " + cap(s[2]);
+          req.query.latin_name = { $regex: req.query.latin_name, $options: "i" };
         }
         if (req.query.cyrilic_city) {
-          req.query.cyrilic_city = cap(req.query.cyrilic_city);
+          req.query.cyrilic_city = { $regex: req.query.cyrilic_city, $options: "i" };
         }
         if (req.query.latin_city) {
-          req.query.latin_city = cap(req.query.latin_city);
+          req.query.latin_city = { $regex: req.query.latin_city, $options: "i" };
+        }
+        if (req.query.certificate_number) {
+          req.query.certificate_number = { $regex: req.query.certificate_number, $options: "i" };
         }
       } catch {
         res.status(400).json({ results: "Грешни данни!" });

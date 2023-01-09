@@ -5,6 +5,7 @@ import User from "#models/User";
 export async function is_logged_in(req, res) {
   const auth_header = req.headers.authorization;
   const token = auth_header && auth_header.split(" ")[1];
+  console.log(auth_header);
 
   if (!token) {
     res.status(401).json({ error: "Забранен достъп!" });
