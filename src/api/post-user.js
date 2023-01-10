@@ -65,6 +65,14 @@ export default async function (req, res) {
     user.education = req.body.education;
   }
 
+  if (req.body.email) {
+    const user_with_email = await User.findOne({ email: req.body.email });
+    if (user_with_email) {
+      res.status(400).json({ error: "Вече съществува потребител с този имейл." });
+      return;
+    }
+  }
+
   try {
     await db_connect();
 

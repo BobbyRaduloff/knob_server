@@ -12,7 +12,6 @@ const UserSchema = new Schema({
   email: {
     type: Schema.Types.String,
     trim: true,
-    unique: [true, "Този имейл вече е зает."],
     match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Моля предоставете валиден имейл."],
   },
   password_hash: {
