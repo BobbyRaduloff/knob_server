@@ -13,6 +13,9 @@ export default async function (req, res) {
     return;
   }
 
+  console.log(req.body);
+  console.log(req.files);
+
   if (
     !req.body.title ||
     !req.files.picture ||
