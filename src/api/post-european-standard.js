@@ -31,7 +31,7 @@ export default async function (req, res) {
       req.files[i].mimetype != "application/pdf" &&
       req.files[i].mimetype != "application/vnd.openxmlformats-officedocument.presentationml.presentation"
     ) {
-      res.status(400).json({ error: "Incorrect file type" });
+      res.status(400).json({ error: "Файлът, който сте качили не е във валиден формат." });
       return;
     }
 
